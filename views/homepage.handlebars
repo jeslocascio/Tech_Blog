@@ -1,0 +1,26 @@
+{{!< layouts/main}}
+
+<h1>Homepage</h1>
+
+{{#if isAuthenticated}}
+    <a href="/dashboard">Dashboard</a>
+    <a href="/logout">Logout</a>
+{{else}}
+    <a href="/signup">Sign Up</a>
+    <a href="/login">Login</a>
+{{/if}}
+
+{{#each posts}}
+  <article class="card mb-3">
+    <div class="card-body">
+      <h2 class="card-title">{{title}}</h2>
+      <p class="card-text">{{content}}</p>
+      <p class="card-text">Posted by {{user.username}} on {{format_date data_created}}</p>
+      <a href="/post/{{id}}" class="btn btn-primary">Read more</a>
+    </div>
+  </article>
+{{/each}}
+
+{{#unless user_id}}
+  <p>Please <a href="/login">login</a> to create new posts and leave comments.</p>
+{{/unless}}

@@ -1,0 +1,12 @@
+{{!< layouts/main}}
+
+<h1>Dashboard</h1>
+
+{{#if isAuthenticated}}
+    <!-- Display existing blog posts here -->
+    <a href="/newpost">Add New Post</a>
+    <a href="/logout">Logout</a>
+{{else}}
+    <p>You need to be logged in to view your dashboard.</p>
+    <a href="/login">Login</a>
+{{/if}}

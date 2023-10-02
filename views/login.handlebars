@@ -1,0 +1,46 @@
+{{!< layouts/main}}
+
+<h1>Sign Up / Log In</h1>
+
+{{#if isAuthenticated}}
+    <p>You are already logged in.</p>
+    <a href="/dashboard">Go to Dashboard</a>
+    <a href="/logout">Logout</a>
+{{else}}
+    <div id="signup-form"{{#if showSignupForm}} style="display:block;"{{else}} style="display:none;"{{/if}}>
+        <h2>Sign Up</h2>
+        <form action="/signup" method="POST">
+            <!-- Signup form fields (e.g., username and password) -->
+            <input type="text" name="username" placeholder="Username">
+            <input type="password" name="password" placeholder="Password">
+            <button type="submit">Sign Up</button>
+        </form>
+        <p>Already have an account? <a href="#" onclick="toggleForm('login-form')">Log In</a></p>
+    </div>
+
+    <div id="login-form"{{#if showLoginForm}} style="display:block;"{{else}} style="display:none;"{{/if}}>
+        <h2>Log In</h2>
+        <form action="/login" method="POST">
+            <!-- Login form fields (e.g., username and password) -->
+            <input type="text" name="username" placeholder="Username">
+            <input type="password" name="password" placeholder="Password">
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="#" onclick="toggleForm('signup-form')">Sign Up</a></p>
+    </div>
+{{/if}}
+
+<script>
+    function toggleForm(formId) {
+        const signupForm = document.getElementById('signup-form');
+        const loginForm = document.getElementById('login-form');
+
+        if (formId === 'signup-form') {
+            signupForm.style.display = 'block';
+            loginForm.style.display = 'none';
+        } else {
+            signupForm.style.display = 'none';
+            loginForm.style.display = 'block';
+        }
+    }
+</script>
