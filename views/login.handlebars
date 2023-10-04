@@ -1,46 +1,82 @@
-{{!< layouts/main}}
-
-<h1>Sign Up / Log In</h1>
-
-{{#if isAuthenticated}}
-    <p>You are already logged in.</p>
-    <a href="/dashboard">Go to Dashboard</a>
-    <a href="/logout">Logout</a>
-{{else}}
-    <div id="signup-form"{{#if showSignupForm}} style="display:block;"{{else}} style="display:none;"{{/if}}>
-        <h2>Sign Up</h2>
-        <form action="/signup" method="POST">
-            <!-- Signup form fields (e.g., username and password) -->
-            <input type="text" name="username" placeholder="Username">
-            <input type="password" name="password" placeholder="Password">
-            <button type="submit">Sign Up</button>
-        </form>
-        <p>Already have an account? <a href="#" onclick="toggleForm('login-form')">Log In</a></p>
+<div class="container mt-5">
+  <div class="row">
+    <!-- Login Form Column -->
+    <div class="col-md-6 mx-auto">
+      <div class="card">
+        <div class="card-header">
+          <!-- Display "Login" as the card header -->
+          Login
+        </div>
+        <div class="card-body">
+          <!-- Create a login form with username and password input fields -->
+          <form class="login-form">
+            <div class="form-group">
+              <label for="username-login">Username</label>
+              <!-- Input field for username -->
+              <input
+                type="text"
+                class="form-control"
+                id="username-login"
+                aria-describedby="emailHelp"
+                placeholder="Enter username"
+              />
+            </div>
+            <div class="form-group">
+              <label for="password-login">Password</label>
+              <!-- Input field for password -->
+              <input
+                type="password"
+                class="form-control"
+                id="password-login"
+                placeholder="Password"
+              />
+            </div>
+            <!-- Login button -->
+            <button type="submit" class="btn btn-primary">Login</button>
+          </form>
+        </div>
+      </div>
     </div>
 
-    <div id="login-form"{{#if showLoginForm}} style="display:block;"{{else}} style="display:none;"{{/if}}>
-        <h2>Log In</h2>
-        <form action="/login" method="POST">
-            <!-- Login form fields (e.g., username and password) -->
-            <input type="text" name="username" placeholder="Username">
-            <input type="password" name="password" placeholder="Password">
-            <button type="submit">Login</button>
-        </form>
-        <p>Don't have an account? <a href="#" onclick="toggleForm('signup-form')">Sign Up</a></p>
+    <!-- Register Form Column -->
+    <div class="col-md-6 mx-auto">
+      <div class="card">
+        <div class="card-header">
+          <!-- Display "Register" as the card header -->
+          Register
+        </div>
+        <div class="card-body">
+          <!-- Create a registration form with username and password input fields -->
+          <form class="signup-form">
+            <div class="form-group">
+              <label for="username-signup">Username</label>
+              <!-- Input field for username -->
+              <input
+                type="text"
+                class="form-control"
+                id="username-signup"
+                placeholder="Enter username"
+              />
+            </div>
+            <div class="form-group">
+              <label for="password-signup">Password</label>
+              <!-- Input field for password -->
+              <input
+                type="password"
+                class="form-control"
+                id="password-signup"
+                placeholder="Password"
+              />
+            </div>
+            <!-- Registration button -->
+            <button type="submit" class="btn btn-primary">Register</button>
+          </form>
+        </div>
+      </div>
     </div>
-{{/if}}
+  </div>
+</div>
 
-<script>
-    function toggleForm(formId) {
-        const signupForm = document.getElementById('signup-form');
-        const loginForm = document.getElementById('login-form');
-
-        if (formId === 'signup-form') {
-            signupForm.style.display = 'block';
-            loginForm.style.display = 'none';
-        } else {
-            signupForm.style.display = 'none';
-            loginForm.style.display = 'block';
-        }
-    }
-</script>
+<!-- Include JavaScript files for login and registration functionality -->
+<script src="/js/login.js"></script>
+<script src="/js/signup.js"></script>

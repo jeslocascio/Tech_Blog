@@ -1,12 +1,48 @@
-{{!< layouts/main}}
+<div class="container my-4">
+  <!-- Loop through 'posts' array and display each post -->
+  {{#each posts}}
+    {{log posts}}
+    <div class="card">
+      <!-- Card header with post title and edit link -->
+      <div class="card-header d-flex justify-content-between">
+        <h3 class="card-title text-center">{{title}}</h3>
+        <a href="/dashboard/post/{{id}}"><i class="fa-solid fa-pen-to-square"></i></a>
+      </div>
+      <div class="card-body">
+        <!-- Post content -->
+        <p class="card-text">{{content}}</p>
+      </div>
+      <div class="card-footer">
+        <!-- Display post creator and creation date -->
+        <p><strong>Created by: </strong>{{user.username}}<strong>Created on: </strong>{{format_date createdAt}}</p>
+      </div>
+    </div>
+  {{/each}}
+</div>
 
-<h1>Dashboard</h1>
+<!-- Form for creating a new post -->
+<form class="container new-post">
+  <div class="card">
+    <div class="card-header">
+      <!-- Form title -->
+      <h2 class="card-title text-center">Create a new post</h2>
+    </div>
+    <div class="form-group px-3">
+      <label for="post-title">Post Title:</label>
+      <!-- Input field for post title -->
+      <input type="text" class="form-control" id="post-title" placeholder="Enter post title" />
+    </div>
+    <div class="form-group px-3">
+      <label for="post-body">Post:</label>
+      <!-- Textarea for post content -->
+      <textarea type="text" class="form-control" id="post-body" placeholder="Enter new post"></textarea>
+    </div>
+  </div>
+  <div class="text-center">
+    <!-- Submit button for creating a new post -->
+    <button type="submit" class="btn btn-primary w-50">Submit</button>
+  </div>
+</form>
 
-{{#if isAuthenticated}}
-    <!-- Display existing blog posts here -->
-    <a href="/newpost">Add New Post</a>
-    <a href="/logout">Logout</a>
-{{else}}
-    <p>You need to be logged in to view your dashboard.</p>
-    <a href="/login">Login</a>
-{{/if}}
+<!-- Include JavaScript for handling new post submission -->
+<script src="/js/new-post.js"></script>

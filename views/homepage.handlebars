@@ -1,26 +1,22 @@
-{{!< layouts/main}}
-
-<h1>Homepage</h1>
-
-{{#if isAuthenticated}}
-    <a href="/dashboard">Dashboard</a>
-    <a href="/logout">Logout</a>
-{{else}}
-    <a href="/signup">Sign Up</a>
-    <a href="/login">Login</a>
-{{/if}}
-
-{{#each posts}}
-  <article class="card mb-3">
-    <div class="card-body">
-      <h2 class="card-title">{{title}}</h2>
-      <p class="card-text">{{content}}</p>
-      <p class="card-text">Posted by {{user.username}} on {{format_date data_created}}</p>
-      <a href="/post/{{id}}" class="btn btn-primary">Read more</a>
+<div class="container">
+  <!-- Loop through 'postData' and display each post -->
+  {{#each postData}}
+    <div class="card">
+      <div class="card-header">
+        <!-- Display post title -->
+        <h5 class="card-title">{{title}}</h5>
+      </div>
+      <div class="card-body">
+        <!-- Provide a link to read the full post -->
+        <a href="/post/{{id}}">Read More...</a>
+      </div>
+      <div class="card-footer">
+        <p class="card-text">
+          <!-- Display post creator and creation date -->
+          <strong>Created by:</strong> {{user.username}}
+          <strong>Created on:</strong> {{format_date createdAt}}
+        </p>
+      </div>
     </div>
-  </article>
-{{/each}}
-
-{{#unless user_id}}
-  <p>Please <a href="/login">login</a> to create new posts and leave comments.</p>
-{{/unless}}
+  {{/each}}
+</div>

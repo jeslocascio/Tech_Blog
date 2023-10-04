@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <!-- Display a label for the title input -->
+      <label for="exampleFormControlTextarea1" class="form-label">Title</label>
+      <!-- Create a textarea input for editing the post title with the current title pre-filled -->
+      <textarea
+        id="edit-title"
+        class="form-control"
+        id="exampleFormControlTextarea1"
+        rows="1"
+      >{{post.title}}</textarea>
+    </div>
+    <div class="card-body">
+      <!-- Display a label for the content input -->
+      <label
+        for="exampleFormControlTextarea1"
+        class="form-label"
+      >Content</label>
+      <!-- Create a textarea input for editing the post content with the current content pre-filled -->
+      <textarea
+        id="edit-content"
+        class="form-control"
+        id="exampleFormControlTextarea1"
+        rows="3"
+      >{{post.content}}</textarea>
+    </div>
+    <div class="card-footer d-flex footer-icons">
+      <!-- Create a link to save the edited post (with a floppy disk icon) -->
+      <a href="#" data-id="{{post.id}}" id="update-link">
+        Save
+        <span><i class="fa-solid fa-floppy-disk"></i></span></a>
+      <!-- Create a link to delete the post (with a trash icon) -->
+      <a href="#" data-id="{{post.id}}" id="delete-link">Delete
+        <span><i class="fa-solid fa-trash"></i></span></a>
+    </div>
+  </div>
+</div>
+
+<!-- Include JavaScript file for handling post editing functionality -->
+<script src="/js/edit.js"></script>

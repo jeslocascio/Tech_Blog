@@ -1,0 +1,69 @@
+<div class="container my-4">
+  <!-- Display post title, content, and creation information -->
+  <div class="card">
+    <div class="card-header">
+      <!-- Display the post title in the card header -->
+      <h3 class="card-title text-center">{{post.title}}</h3>
+    </div>
+    <div class="card-body">
+      <!-- Display the post content in the card body -->
+      <p class="card-text">{{post.content}}</p>
+    </div>
+    <div class="card-footer">
+      <!-- Display the post creator's username and creation date in the card footer -->
+      <p><strong>Created by: </strong>{{post.user.username}}
+        <strong>Created on: </strong>{{format_date post.createdAt}}</p>
+    </div>
+  </div>
+</div>
+
+<div class="container my-4">
+  <div class="row">
+
+    <!-- Comments Column -->
+    <div class="col-md-6">
+      <!-- Iterate through each comment and display them in separate cards -->
+      {{#each post.comments}}
+        <h3 class="text-center">Comments</h3>
+        <div class="card mb-4">
+          <div class="card-header">
+            <!-- Display the username of the commenter in the card header -->
+            <h3 class="card-title">{{this.user.username}}</h3>
+          </div>
+          <div class="card-body">
+            <!-- Display the comment text in the card body -->
+            <p class="card-text">{{this.comment}}</p>
+          </div>
+          <div class="card-footer">
+            <!-- Display the creation date of the comment in the card footer -->
+            <p><strong>Created on: </strong>{{format_date createdAt}}</p>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+
+    <!-- Comment Form Column -->
+    <div class="col-md-6">
+      <div class="card mb-4">
+        <div class="card-header">
+          <h3>Leave your comment here</h3>
+        </div>
+        <div class="card-body">
+          <!-- Create a textarea input for entering a new comment -->
+          <textarea
+            id="comment-content"
+            class="form-control"
+            id="exampleFormControlTextarea1"
+            rows="2"
+          ></textarea>
+          <!-- Create a button to submit the new comment with data-id attribute to identify the post -->
+          <button class="btn btn-primary mt-4" id="submit-comment" data-id="{{post.id}}">Submit</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Include JavaScript file for handling comment submission -->
+<script src="/js/comments.js"></script>
