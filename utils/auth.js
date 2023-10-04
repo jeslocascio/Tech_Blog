@@ -1,13 +1,11 @@
-// Middleware function to check if a user is authenticated.
 const withAuth = (req, res, next) => {
-  // If the user is not logged in (session does not have a 'logged_in' property set to true), redirect the request to the login route.
-  if (!req.session.logged_in) {
-    res.redirect('/login'); // Redirect to the login page.
+  // If the user is not logged in, redirect the user to the login page
+  if (!req.session.loggedIn) {
+    res.redirect("/login");
   } else {
-    // If the user is logged in, continue to the next middleware or route handler.
-    next(); // Call the next middleware or route handler in the chain.
+    // If the user is logged in, allow them to view the paintings
+    next();
   }
 };
 
-// Export the withAuth middleware so it can be used in other parts of your application.
 module.exports = withAuth;
