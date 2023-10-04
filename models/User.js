@@ -1,17 +1,17 @@
-// Import necessary modules and dependencies.
-const { Model, DataTypes } = require('sequelize'); // Import Sequelize model and DataTypes.
-const bcrypt = require('bcrypt'); // Import the bcrypt library for password hashing.
-const sequelize = require('../config/connection'); // Import the database connection.
+// Import necessary Sequelize modules
+const { Model, DataTypes } = require("sequelize");
+const sequelize = require("../config/connection");
+const bcrypt = require("bcrypt");
 
-// Define the User model by extending the Sequelize Model class.
+// Initialize the User model by extending Sequelize's Model class
 class User extends Model {
-  // Method to check if a provided password matches the stored password hash.
+  // Method to check if the provided password matches the stored hashed password
   checkPassword(loginPw) {
     return bcrypt.compareSync(loginPw, this.password);
   }
 }
 
-// Initialize the User model with its properties and constraints.
+// Define the attributes and rules for the User model
 User.init(
   {
     id: {
@@ -23,32 +23,31 @@ User.init(
     username: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      unique: true, // Ensure usernames are unique
     },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [8], // Ensure the password has a minimum length of 8 characters.
+        len: [6], // Ensure the password length is at least 6 characters
       },
     },
   },
   {
     hooks: {
-      // Hook that executes before creating a new user record.
-      beforeCreate: async (newUserData) => {
-        // Hash the user's password before storing it in the database.
-        newUserData.password = await bcrypt.hash(newUserData.password, 10); // Hash the password with a salt factor of 10.
-        return newUserData;
+      // Hash the password before creating a new user record
+      beforeCreate: async (hashPassword) => {
+        hashPassword.password = await bcrypt.hash(hashPassword.password, 10);
+        return hashPassword;
       },
     },
-    sequelize,            // Pass the database connection instance.
-    timestamps: false,    // Disable timestamps (created_at and updated_at columns).
-    freezeTableName: true, // Prevent Sequelize from pluralizing the table name.
-    underscored: true,    // Use underscores in column names (e.g., username).
-    modelName: 'user',   // Name of the model in singular form.
+    sequelize,             // Use the defined Sequelize instance
+    timestamps: false,     // Disable timestamp fields (createdAt, updatedAt)
+    freezeTableName: true, // Prevent table name pluralization
+    underscored: true,     // Use snake_case for column names
+    modelName: "user",     // Define the model name
   }
 );
 
-// Export the User model so it can be used in other parts of your application.
+// Export the User model
 module.exports = User;

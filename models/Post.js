@@ -1,11 +1,11 @@
-// Import necessary modules and dependencies.
-const { Model, DataTypes } = require('sequelize'); // Import Sequelize model and DataTypes.
-const sequelize = require('../config/connection'); // Import the database connection.
+// Import necessary Sequelize modules
+const { Model, DataTypes } = require("sequelize");
+const sequelize = require("../config/connection");
 
-// Define the Post model by extending the Sequelize Model class.
+// Initialize the Post model by extending Sequelize's Model class
 class Post extends Model {}
 
-// Initialize the Post model with its properties and constraints.
+// Define the attributes and rules for the Post model
 Post.init(
   {
     id: {
@@ -17,31 +17,39 @@ Post.init(
     title: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        len: [8], // Ensure the title length is at least 8 characters
+      },
     },
     content: {
       type: DataTypes.STRING,
-    },
-    data_created: {
-      type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: DataTypes.NOW,
+      validate: {
+        len: [8], // Ensure the content length is at least 8 characters
+      },
     },
     user_id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
       references: {
-        model: 'user',  // References the "user" model.
-        key: 'id',      // Refers to the "id" column in the "user" model.
+        model: "user", // Reference the "user" model
+        key: "id",     // Using the "id" attribute as the foreign key
       },
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+      allowNull: false,
     },
   },
   {
-    sequelize,            // Pass the database connection instance.
-    timestamps: false,    // Disable timestamps (created_at and updated_at columns).
-    freezeTableName: true, // Prevent Sequelize from pluralizing the table name.
-    underscored: true,    // Use underscores in column names (e.g., data_created).
-    modelName: 'post',   // Name of the model in singular form.
+    sequelize,             // Use the defined Sequelize instance
+    timestamps: false,     // Disable timestamp fields (createdAt, updatedAt)
+    freezeTableName: true, // Prevent table name pluralization
+    underscored: true,     // Use snake_case for column names
+    modelName: "post",     // Define the model name
   }
 );
 
-// Export the Post model so it can be used in other parts of your application.
+// Export the Post model
 module.exports = Post;

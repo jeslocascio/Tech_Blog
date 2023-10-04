@@ -1,11 +1,11 @@
-// Import necessary modules and dependencies.
-const { Model, DataTypes } = require('sequelize'); // Import Sequelize model and DataTypes.
-const sequelize = require('../config/connection'); // Import the database connection.
+// Import necessary modules and dependencies
+const { Model, DataTypes } = require("sequelize");
+const sequelize = require("../config/connection");
 
-// Define the Comment model by extending the Sequelize Model class.
+// Initialize the Comment model by extending off Sequelize's Model class
 class Comment extends Model {}
 
-// Initialize the Comment model with its properties and constraints.
+// Define the Comment model attributes and rules
 Comment.init(
   {
     id: {
@@ -18,7 +18,7 @@ Comment.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    creation_date: {
+    createdAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
       allowNull: false,
@@ -27,26 +27,27 @@ Comment.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: "user",  // References the "user" model.
-        key: "id",      // Refers to the "id" column in the "user" model.
-      }
+        model: "user", // Reference the "user" model
+        key: "id", // Using the "id" column as the foreign key
+      },
     },
     post_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: "post",  // References the "post" model.
-        key: "id",      // Refers to the "id" column in the "post" model.
-      }
+        model: "post", // Reference the "post" model
+        key: "id", // Using the "id" column as the foreign key
+      },
     },
   },
   {
-    sequelize,            // Pass the database connection instance.
-    freezeTableName: true, // Prevent Sequelize from pluralizing the table name.
-    underscored: true,    // Use underscores in column names (e.g., creation_date).
-    modelName: 'comment', // Name of the model in singular form.
+    sequelize,
+    timestamps: false, // Disable timestamps (createdAt)
+    freezeTableName: true, // Prevent table name pluralization
+    underscored: true, // Use underscores instead of camelCase for column names
+    modelName: "comment", // Set the model name to "comment"
   }
 );
 
-// Export the Comment model so it can be used in other parts of your application.
+// Export the Comment model for use in other parts of the application
 module.exports = Comment;
