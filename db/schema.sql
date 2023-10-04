@@ -1,4 +1,5 @@
--- Drop the blog_db database if it exists, and creates a new one
-
+-- Drop the database if it already exists
 DROP DATABASE IF EXISTS blog_db;
+-- Create a new database
 CREATE DATABASE blog_db;
+
