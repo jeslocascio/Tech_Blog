@@ -1,13 +1,18 @@
-// Import necessary modules and dependencies.
-const router = require('express').Router(); // Express router for defining routes.
+// Import necessary modules and dependencies
+const router = require("express").Router();
+const dashboardRoutes = require("./dashboard-routes");
+const homeRoutes = require("./homepage-routes");
+const apiRoutes = require("./api");
 
-// Import route modules for different parts of your application.
-const apiRoutes = require('./api'); // Import API routes.
-const homeRoutes = require('./homeRoutes'); // Import home routes.
+// Use routes for the homepage, dashboard, and API
+router.use("/", homeRoutes); // Use homepage routes for the root path
+router.use("/dashboard", dashboardRoutes); // Use dashboard routes for /dashboard
+router.use("/api", apiRoutes); // Use API routes for /api
 
-// Define route handlers by mounting route modules to specific URL prefixes.
-router.use('/', homeRoutes); // Mount the 'homeRoutes' module to the root URL.
-router.use('/api', apiRoutes); // Mount the 'apiRoutes' module under the '/api' URL prefix.
+// Handle any other routes with a "Wrong Route!" message
+router.use((req, res) => {
+  res.send("<h1>Wrong Route!</h1>");
+});
 
-// Export the router configuration so it can be used in other parts of your application.
+// Export the router for use in other parts of the application
 module.exports = router;

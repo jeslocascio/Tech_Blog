@@ -1,11 +1,18 @@
-//Add Dependencies
-const router = require('express').Router();
-const userRoutes = require('./userRoutes');
-const projectRoutes = require('./projectRoutes');
+// Import necessary modules and dependencies
+const router = require("express").Router();
+const postRoutes = require("./post-routes");
+const commentRoutes = require("./comment-routes");
+const userRoutes = require("./user-routes");
 
-// Uses userRoutes and projectRoutes to route endpoints
-router.use('/users', userRoutes);
-router.use('/projects', projectRoutes);
+// Middleware for "/posts" routes
+router.use("/posts", postRoutes);
 
-// Exports Router
+// Middleware for "/comments" routes
+router.use("/comments", commentRoutes);
+
+// Middleware for "/users" routes
+router.use("/users", userRoutes);
+
+// Export the router for use in other parts of the application
 module.exports = router;
+
