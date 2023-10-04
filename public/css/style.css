@@ -1,0 +1,18 @@
+/* Styling for the .fa-pen-to-square class */
+.fa-pen-to-square {
+  color: whitesmoke;
+  font-size: 1.5rem;
+}
+
+/* Styling for the .footer-icons class */
+.footer-icons {
+  font-size: 1.2rem;
+  justify-content: center;
+  gap: 20vw; /* Adjusted the gap value for better readability */
+}
+
+/* Styling for elements with the .comments class */
+.comments {
+  gap: 10vw; /* Adjusted the gap value for better readability */
+  min-height: 20px;
+}
