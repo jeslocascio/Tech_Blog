@@ -4,7 +4,7 @@
     {{log posts}}
     <div class="card">
       <!-- Card header with post title and edit link -->
-      <div class="card-header d-flex justify-content-between">
+      <div class="card-header blog-bg text-light  d-flex justify-content-between">
         <h3 class="card-title text-center">{{title}}</h3>
         <a href="/dashboard/post/{{id}}"><i class="fa-solid fa-pen-to-square"></i></a>
       </div>
@@ -14,7 +14,7 @@
       </div>
       <div class="card-footer">
         <!-- Display post creator and creation date -->
-        <p><strong>Created by: </strong>{{user.username}}<strong>Created on: </strong>{{format_date createdAt}}</p>
+        <p><strong>Created by: </strong>{{user.username}} <strong>Created on: </strong>{{format_date createdAt}}</p>
       </div>
     </div>
   {{/each}}
@@ -23,7 +23,7 @@
 <!-- Form for creating a new post -->
 <form class="container new-post">
   <div class="card">
-    <div class="card-header">
+    <div class="card-header blog-bg text-light">
       <!-- Form title -->
       <h2 class="card-title text-center">Create a new post</h2>
     </div>
@@ -40,7 +40,7 @@
   </div>
   <div class="text-center">
     <!-- Submit button for creating a new post -->
-    <button type="submit" class="btn btn-primary w-50">Submit</button>
+    <button type="submit" class="blog-bg text-light btn btn-primary w-50">Submit</button>
   </div>
 </form>
 

@@ -1,7 +1,7 @@
 <div class="container my-4">
   <!-- Display post title, content, and creation information -->
   <div class="card">
-    <div class="card-header">
+    <div class="card-heade blog-bg text-light">
       <!-- Display the post title in the card header -->
       <h3 class="card-title text-center">{{post.title}}</h3>
     </div>
@@ -26,7 +26,7 @@
       {{#each post.comments}}
         <h3 class="text-center">Comments</h3>
         <div class="card mb-4">
-          <div class="card-header">
+          <div class="card-header blog-bg text-light">
             <!-- Display the username of the commenter in the card header -->
             <h3 class="card-title">{{this.user.username}}</h3>
           </div>
@@ -45,7 +45,7 @@
     <!-- Comment Form Column -->
     <div class="col-md-6">
       <div class="card mb-4">
-        <div class="card-header">
+        <div class="card-header blog-bg text-light">
           <h3>Leave your comment here</h3>
         </div>
         <div class="card-body">
@@ -57,7 +57,7 @@
             rows="2"
           ></textarea>
           <!-- Create a button to submit the new comment with data-id attribute to identify the post -->
-          <button class="btn btn-primary mt-4" id="submit-comment" data-id="{{post.id}}">Submit</button>
+          <button class="btn blog-bg text-light btn-primary mt-4" id="submit-comment" data-id="{{post.id}}">Submit</button>
         </div>
       </div>
     </div>

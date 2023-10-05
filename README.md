@@ -44,8 +44,7 @@
   
   ## Contribution
   
-  The jass.css file was found from github.com/necolas/normalize.css
-
+  N/A
 
   ## Tests
   
